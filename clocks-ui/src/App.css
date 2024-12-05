@@ -96,24 +96,69 @@ body {
   color: white;
 }
 
+.modify-button {
+  background: none;
+  border: none;
+  color: rgb(221, 147, 8);
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.modify-button:hover {
+  color: white;
+}
+
 .clock-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   border-bottom: 1px solid rgb(85, 85, 85);
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+.delete-button {
+  margin-right: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 100px;
+}
+
+.clock-content {
+  font-size: 1.2em;
+  align-items: center;
+}
+
+.clock-timezone {
+  font-size: 0.8em;
+  color: grey;
 }
 
 .clock-label {
-  font-size: 1.2em;
   font-weight: bold;
+  font-size: 1.2em;
+  color: white;
+  margin-top: 0.2em;
 }
 
 .clock-time {
-  font-size: 1.2em;
+  font-size: 2em;
   font-family: monospace;
+  margin-left: auto;
+}
+
+.reference-indicator {
+  width: 0.8em;
+  height: 0.8em;
+  margin-left: 8px;
+  top: 10px;
+  left: 10px;
+  border-radius: 2px;
 }
 
 h1 {
