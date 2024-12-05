@@ -76,7 +76,34 @@ body {
 
 .popup-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.popup-cancel-button {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup-cancel-button:hover {
+  background-color: #b3b3b3;
+}
+
+.popup-add-button {
+  background-color: #e69500;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup-add-button:hover {
+  background-color: #cc8400;
 }
 
 .modify-button,
@@ -174,4 +201,16 @@ h1 {
   border-bottom: 1px solid rgb(85, 85, 85);
   padding-bottom: 5px;
   margin: 20px 0 0 0;
+}
+
+.constrained-input {
+  width: 100%;
+  max-width: 300px; /* Adjust as needed */
+  box-sizing: border-box;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px;
 }

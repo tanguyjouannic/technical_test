@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  clocks-api:
+    image: clocks-api
+    ports:
+      - "8080:8080"
+
+  clocks-ui:
+    image: clocks-ui
+    depends_on:
+      - clocks-api
+    ports:
+      - "80:80"
+    environment:
+      CLOCKS_API_HOST: http://localhost:8080

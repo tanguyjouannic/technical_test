@@ -11,6 +11,7 @@ function App() {
   const [newClockTimezone, setNewClockTimezone] = useState('');
   const [isModifyMode, setIsModifyMode] = useState(false);
   const [referenceClockId, setReferenceClockId] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const timezones = moment.tz.names().map((tz) => ({
     value: tz,
@@ -59,9 +60,19 @@ function App() {
     setShowAddClockPopup(false);
     setNewClockLabel('');
     setNewClockTimezone('');
+    setErrorMessage('');
   };
 
   const handleSaveClock = async () => {
+    if (!newClockLabel.trim()) {
+      setErrorMessage('Label cannot be empty.');
+      return;
+    }
+    if (!newClockTimezone) {
+      setErrorMessage('Time Zone must be selected.');
+      return;
+    }
+
     const newClock = {
       label: newClockLabel,
       timezone: newClockTimezone,
@@ -137,31 +148,34 @@ function App() {
         <div className="popup">
           <div className="popup-content">
             <h2>New Clock</h2>
-            <label>
-              Label:
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
+            <div className="form-group">
               <input
+                id="clock-label"
                 type="text"
+                placeholder="Name"
                 value={newClockLabel}
                 onChange={(e) => setNewClockLabel(e.target.value)}
+                className="constrained-input"
               />
-            </label>
-            <label>
-              Time Zone:
+            </div>
+            <div className="form-group">
               <select
+                id="clock-timezone"
                 value={newClockTimezone}
                 onChange={(e) => setNewClockTimezone(e.target.value)}
               >
-                <option value="">Select Time Zone</option>
+                <option value="">Time Zone</option>
                 {timezones.map((tz) => (
                   <option key={tz.value} value={tz.value}>
                     {tz.label}
                   </option>
                 ))}
               </select>
-            </label>
+            </div>
             <div className="popup-buttons">
-              <button className="modify-button" onClick={handleCancel}>Cancel</button>
-              <button className="add-button" onClick={handleSaveClock}>Add Clock</button>
+              <button className="popup-cancel-button" onClick={handleCancel}>Cancel</button>
+              <button className="popup-add-button" onClick={handleSaveClock}>Add Clock</button>
             </div>
           </div>
         </div>

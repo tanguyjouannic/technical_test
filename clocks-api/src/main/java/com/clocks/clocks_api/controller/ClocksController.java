@@ -15,26 +15,26 @@ public class ClocksController {
     @Autowired
     private ClocksRepository clockRepository;
 
-    // GET method to retrieve all clocks
+    // GET method to retrieve all clocks.
     @GetMapping
     public List<Clock> getAllClocks() {
         return clockRepository.findAll();
     }
 
-    // POST method to create a new clock
+    // POST method to create a new clock.
     @PostMapping
     public Clock createClock(@RequestParam String label, @RequestParam String timezone) {
         Clock clock = new Clock(label, timezone);
         return clockRepository.save(clock);
     }
 
-    // DELETE method to delete a clock by UUID
+    // DELETE method to delete a clock by UUID.
     @DeleteMapping
     public void deleteClock(@RequestParam UUID id) {
         clockRepository.deleteById(id);
     }
 
-    // PUT method to update a clock by UUID
+    // PUT method to update a clock by UUID.
     @PutMapping
     public Clock updateClock(@RequestParam UUID id, @RequestParam String label, @RequestParam String timezone) {
         Clock clock = clockRepository.findById(id).orElseThrow(() -> new RuntimeException("Clock not found"));
