@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  background-color: black;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  color: white;
+}
+
+.clock-list-container {
+  width: 400px;
+}
+
+.clock-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.clock-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.popup-content h2 {
+  margin-top: 0;
+}
+
+.popup-content label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.popup-content input,
+.popup-content select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modify-button,
+.add-button {
+  background: none;
+  border: none;
+  color: rgb(221, 147, 8);
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+.modify-button:hover,
+.add-button:hover {
+  color: white;
+}
+
+.clock-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid rgb(85, 85, 85);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.clock-label {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.clock-time {
+  font-size: 1.2em;
+  font-family: monospace;
+}
+
+h1 {
+  border-bottom: 1px solid rgb(85, 85, 85);
+  padding-bottom: 5px;
+  margin: 20px 0 0 0;
+}
