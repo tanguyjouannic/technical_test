@@ -1,22 +1,40 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment-timezone';
 
-function Clock({ id, label, timezone, isModifyMode, onDelete, referenceClockId, setReferenceClockId }) {
+function Clock({ id, label, timezone, isModifyMode, onDelete, referenceClockId, setReferenceClockId, referenceTimezone }) {
   const [currentTime, setCurrentTime] = useState('');
+  const [day, setDay] = useState('');
+  const [delta, setDelta] = useState('');
 
   useEffect(() => {
     const updateClock = () => {
-      const time = new Date().toLocaleTimeString('en-US', {
-        timeZone: timezone,
-        hour12: false,
-      });
-      setCurrentTime(time);
+      const now = new Date();
+
+      const timeInTimezone = moment.tz(now, timezone);
+      setCurrentTime(timeInTimezone.format('HH:mm:ss'));
+
+      const timeInReferenceTimezone = moment.tz(now, referenceTimezone);
+
+      const deltaMinutes = timeInTimezone.utcOffset() - timeInReferenceTimezone.utcOffset();
+      const deltaHours = deltaMinutes / 60;
+      const deltaString = deltaHours >= 0 ? `+${deltaHours} h` : `${deltaHours} h`;
+      setDelta(deltaString);
+
+      const dateDifference = timeInTimezone.startOf('day').diff(timeInReferenceTimezone.startOf('day'), 'days');
+      let dayString = 'Today';
+      if (dateDifference === -1) {
+        dayString = 'Yesterday';
+      } else if (dateDifference === 1) {
+        dayString = 'Tomorrow';
+      }
+      setDay(dayString);
     };
 
     updateClock();
     const interval = setInterval(updateClock, 1000);
 
     return () => clearInterval(interval);
-  }, [timezone]);
+  }, [timezone, referenceTimezone]);
 
   const handleDelete = (e) => {
     e.stopPropagation();
@@ -35,7 +53,7 @@ function Clock({ id, label, timezone, isModifyMode, onDelete, referenceClockId, 
         </button>
       )}
       <div className="clock-content">
-        <div className="clock-timezone">{timezone}</div>
+        <div className="clock-timezone">{timezone}, {day}, {delta}</div>
         <div className="clock-label">
           {label}
           {referenceClockId === id && (

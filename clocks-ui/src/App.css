@@ -89,6 +89,7 @@ body {
   padding: 0;
   margin: 0;
   display: block;
+  font-size: 1.4em;
 }
 
 .modify-button:hover,
@@ -121,12 +122,20 @@ body {
 }
 
 .delete-button {
+  display: block;
   margin-right: 10px;
   background-color: red;
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 100px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 0.8em;
+}
+
+.delete-button:hover {
+  background-color: white;
+  color: black;
 }
 
 .clock-content {
@@ -147,7 +156,7 @@ body {
 }
 
 .clock-time {
-  font-size: 2em;
+  font-size: 2.2em;
   font-family: monospace;
   margin-left: auto;
 }

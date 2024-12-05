@@ -23,7 +23,9 @@ function App() {
 
   const fetchClocks = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/clocks');
+      console.log('REACT_APP_CLOCKS_API_HOST:', process.env.REACT_APP_CLOCKS_API_HOST);
+
+      const response = await axios.get(`${process.env.REACT_APP_CLOCKS_API_HOST}/clocks`);
       setClocks(response.data);
       if (response.data.length > 0 && !referenceClockId) {
         setReferenceClockId(response.data[0].id);
@@ -35,7 +37,7 @@ function App() {
 
   const addClock = async (newClock) => {
     try {
-      const response = await axios.post('http://localhost:8080/clocks', null, {
+      const response = await axios.post(`${process.env.REACT_APP_CLOCKS_API_HOST}/clocks`, null, {
         params: newClock,
       });
       
@@ -101,6 +103,9 @@ function App() {
     }
   };
 
+  const referenceClock = clocks.find((clock) => clock.id === referenceClockId);
+  const referenceTimezone = referenceClock ? referenceClock.timezone : 'UTC';
+
   return (
     <div className="app">
       <div className="clock-list-container">
@@ -122,6 +127,7 @@ function App() {
               onDelete={deleteClock}
               referenceClockId={referenceClockId}
               setReferenceClockId={setReferenceClockId}
+              referenceTimezone={referenceTimezone}
             />
           ))}
         </div>
