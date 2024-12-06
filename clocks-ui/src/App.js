@@ -24,9 +24,7 @@ function App() {
 
   const fetchClocks = async () => {
     try {
-      console.log('REACT_APP_CLOCKS_API_HOST:', process.env.REACT_APP_CLOCKS_API_HOST);
-
-      const response = await axios.get(`${process.env.REACT_APP_CLOCKS_API_HOST}/clocks`);
+      const response = await axios.get('http://localhost:8080/clocks');
       setClocks(response.data);
       if (response.data.length > 0 && !referenceClockId) {
         setReferenceClockId(response.data[0].id);
@@ -38,7 +36,7 @@ function App() {
 
   const addClock = async (newClock) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_CLOCKS_API_HOST}/clocks`, null, {
+      const response = await axios.post('http://localhost:8080/clocks', null, {
         params: newClock,
       });
       

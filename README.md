@@ -1,5 +1,7 @@
 # Technical Test
 
+![Overview](docs/overview.png)
+
 ## Introduction
 
 The repository features a simple solution to manage clocks. A clock is an entity that has a name and timezone. The user can manage an unlimited number of clocks. 
